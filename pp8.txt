@@ -15,13 +15,10 @@ printf("Process 0 initialized data: ");
 for (int i = 0; i < size; i++) { 
 printf("%d ", data[i]); } 
 printf("\n"); } 
-MPI_Scatter(data, 1, MPI_INT, &recv_value, 1, MPI_INT, 0, 
-MPI_COMM_WORLD); 
-printf("Process %d received value %d from Scatter\n", rank, 
-recv_value); 
+MPI_Scatter(data, 1, MPI_INT, &recv_value, 1, MPI_INT, 0, MPI_COMM_WORLD); 
+printf("Process %d received value %d from Scatter\n", rank, recv_value); 
 recv_value += rank; 
-MPI_Gather(&recv_value, 1, MPI_INT, gathered, 1, MPI_INT, 
-0,MPI_COMM_WORLD); 
+MPI_Gather(&recv_value, 1, MPI_INT, gathered, 1, MPI_INT, 0,MPI_COMM_WORLD); 
 if (rank == 0) { 
 printf("Process 0 gathered data: "); 
 for (int i = 0; i < size; i++)  { 
